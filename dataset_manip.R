@@ -54,11 +54,14 @@ snc_format <- function(dataset){
 
     a <- a %>% mutate(final_phase_calc = case_when(
       livelihoods_phase == 0 &  nutrition_phase == 0 & mortality_phase == 0 ~ foodconsumption_phase,
-      foodconsumption_phase != 0 & livelihoods_phase != 0 & nutrition_phase == 0 & mortality_phase == 0 ~ (3*foodconsumption_phase + 2 * livelihoods_phase)/5,
+      foodconsumption_phase != 0 & livelihoods_phase != 0 & nutrition_phase == 0 & mortality_phase == 0 ~ (4*foodconsumption_phase + 1 * livelihoods_phase)/5,
       foodconsumption_phase != 0 & livelihoods_phase != 0 & nutrition_phase != 0 & mortality_phase == 0 ~ (3*foodconsumption_phase + 2 * livelihoods_phase + nutrition_phase)/6,
       foodconsumption_phase != 0 & livelihoods_phase != 0 & nutrition_phase != 0 & mortality_phase != 0 ~ (3*foodconsumption_phase + 2 * livelihoods_phase + nutrition_phase +mortality_phase)/7)
     )
+    
     a <- a  %>% mutate(final_phase_calc = round(final_phase_calc,0))
     return(a)
 }
+
+
 
