@@ -46,11 +46,10 @@ snc_format <- function(dataset){
       'mortality_phase'
     )
 
-    a <- a %>% filter(!is.na(adm1_name))
-    
+   
     a[is.na(a)] = '0'
     
-    
+    a <- a %>% filter(adm1_name != "0")
    
      a = a %>% 
       mutate(across(foodconsumption_phase:mortality_phase, as.numeric))
